@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>biaodan</title>
+		<style type="text/css">
+			*{margin: 5px;}
+			legend{color: red;}
+			span{color: red;}
+			fieldset{margin-bottom: 20px;width: 500px;}
+			#com option{display: none;}
+			datalist{display: none;}
+            div{width: 500px;}
+            input{width: 460px;line-height: 25px;}
+            #but{width: 470px;background-color: #cccccc;}
+            #sea{height: 30px;width: 465px;}
+		</style>
+	</head>
+	<body>
+		<h1>学生信息</h1>
+		<form>
+		    <fieldset>
+			    <legend>基本信息</legend>
+			        <div>姓名：<br/><input type="text" name="name1" required="required" placeholder="请输入姓名" /><span>*</span></div>
+			        <div>学号：<br/><input type="text" name="num" required="required" placeholder="请输入学号"/><span>*</span></div>
+                    <div>手机号码：<br/><input type="tel" name="phone" required="required" placeholder="请输入手机号"/><span>*</span></div>
+                    <div class="email">
+                        邮箱地址：<br/>
+                        <input type="email" required="required" placeholder="请输入邮箱地址" list="com" onclick="none()" onkeydown="show()"autocomplete="on"/><span>*</span>
+                        <datalist id="com">
+                            <option value="@qq.com" class="subNone"></option>
+                            <option value="@163.com" class="subNone"></option>
+                            <option value="@gmail.com" class="subNone"></option>
+                            <option value="@yahho.com" class="subNone"></option>
+                            <option value="@126.com" class="subNone"></option>
+                        </datalist>
+                    </div>
+                    <div>
+                        录取学校：<br/>
+                        <input type="search" name="school" autocomplete="on" list="names" id="sea"/>
+                        <datalist id="names">
+                            <option>河北师范大学</option><option>河北科技大学</option><option>河北大学</option><option>河北农业大学</option><option>河北医科大学</option>
+                            <option>北京师范大学</option><option>北京中医药大学</option><option>北京大学</option>
+                            <option>山东大学</option><option>山东师范大学</option>
+                            <option>哈尔滨师范大学</option><option>哈尔滨工业大学</option>
+                        </datalist>
+                    </div>
+                    <div>入学成绩：<br/><input type="number" /></div>
+                    <div>入学时间：<br/><input type="date"/></div>
+                    <input type="submit" value="提交" id="but" />
+		    </fieldset>
+		</form>
+	</body>
+	<script type="text/javascript">
+        
+        function none(){
+        	var datanone = document.getElementById("com");
+        	datanone.style.display= "none";
+        }
+        var reg = /^[a-zA-Z0-9_-]/;
+        function show(){
+        	var datashow = document.getElementById("com");
+        	datashow.style.display="block";
+        }
+        
+        
+	</script>
+</html>
