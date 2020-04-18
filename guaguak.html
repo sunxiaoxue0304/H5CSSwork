@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+        .ggk{
+            width:300px;
+            height: 150px;
+            border:4px solid rgb(122, 131, 216);
+            border-radius: 5px;
+            margin:0 auto;
+            color:red;
+            position: relative;
+        }
+        .ggk span{
+            position: absolute;
+            width:100%;
+            height: 100%;
+            text-align: center;
+            font-size:50px;
+            line-height: 150px;
+        }
+        canvas{
+            width: 300;
+            height: 150;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    
+	</style>
+</head>
+<body>
+
+    <div class='ggk'>
+        <span id='span'>一等奖</span>
+        <canvas id='canvas'></canvas>
+    </div>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    init();
+
+    function init(){
+        productResult();
+        drawCover(ctx);
+        drawStroke(ctx);
+    }
+
+    function productResult(){
+        var span = document.getElementById("span");
+        var arr = ['一等奖','二等奖','三等奖','谢谢惠顾','再来一次'];
+        var text = arr[randomInt(0,arr.length-1)];
+        span.innerHTML = text;
+    }	
+    //产生随机值
+    function randomInt(from,to){
+        return parseInt( Math.random()*(to-from+1)+from );
+    }
+    //绘制覆盖层灰色
+    function drawCover(ctx){
+        ctx.save();
+        ctx.fillStyle = "rgb(100,100,100)";
+        ctx.fillRect(0,0,300,150);
+        ctx.restore();
+    }
+    function  drawStroke(ctx){
+
+        canvas.onmousedown = function(e){
+
+            var downX = e.offsetX;
+            var downY = e.offsetY;
+            ctx.beginPath();
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.lineWidth = 20;
+            // ctx.arc(downX,downY,4);
+            ctx.moveTo(downX,downY);
+
+            canvas.onmousemove = function(e){
+                var x = e.offsetX;
+                var y = e.offsetY;
+                ctx.lineTo(x,y);
+                ctx.stroke();
+            }
+
+        }
+        canvas.onmouseup = function(){
+            canvas.onmousemove = null;
+        }
+
+    }
+
+</script>
+</body>
+</html>
